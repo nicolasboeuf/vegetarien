@@ -6,14 +6,31 @@
 
       <div id="content">
 
-        <h1> {{$t('app.title')}} </h1>
-        <div id="recettes_container">
+        <h1 v-if="appState=='selection'"> {{$t('app.title')}} </h1>
+
+        <div id="recettes_container" v-if="appState=='selection'">
           <div class="recette_box" v-for="r in recettes" :class="(userRecettes.includes(r['id']))?'selected':''"  @click="addRecette(r['id'])">
             <div class="recette_tickbox"></div>
             <div class="recette_label">{{r.label}}</div>
-            
+            </div>
+        </div>
 
+        <div id="ingredients_container" v-if="appState=='liste'">
+          
+          <div class="recette_ingredient_liste" v-for="rID in userRecettes">
+
+            <div class="recette_label">{{getRecetteName(rID)}}</div>
+
+            <div class="recette_ingredient" v-for="ingredient in getRecetteIngredient(rID)">
+
+              <div class="trash_btn"></div>
+              {{ingredient}}
+              
+            </div>
+
+            
           </div>
+
         </div>
 
       </div>
@@ -76,6 +93,7 @@ export default {
       locales : state => state.locales,
       defaultLocale : state => state.defaultLocale,
 
+      appState : state => state.appState,
 
       recettes : state => state.recettes,
       ingredients : state => state.ingredients,
@@ -99,6 +117,25 @@ export default {
       }
       
     },
+
+    getRecetteName(id){
+      var self = this
+      var obj = _.find(this.recettes,function(o){return o.id === id})
+      return obj.label
+    },
+
+    getRecetteIngredient(id){
+      var self = this
+      var tabIngredients = []
+
+      _.each(this.ingredients,function(i){
+        if(i.idrecette==id){
+          tabIngredients.push(i.label)
+        }
+      })
+
+      return tabIngredients
+    }
 
   },
 
@@ -188,6 +225,33 @@ export default {
               color:white;
             }
           }
+        }
+      }
+    }
+    #ingredients_container{
+      margin-top: 35px;
+      padding-left: 25px;
+      padding-right: 25px;
+      .recette_ingredient_liste{
+        margin-bottom: 20px;
+        .recette_label{
+          font-family: "robotomedium";
+          font-size: 20px;
+          margin-bottom: 5px;
+        }
+        .recette_ingredient{
+          font-family: "robotoregular";
+          font-size: 20px;
+          .trash_btn{
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            background-image: url("~assets/img/trash.svg"); 
+            background-position: center center;
+            transform:translate(0,2px);
+            margin-right: 5px;
+          }
+
         }
       }
     }

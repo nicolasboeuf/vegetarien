@@ -12,10 +12,12 @@ export const state = () => ({
   locale: undefined, 
   locales: undefined, 
 
+  appState : "selection",
+
   recettes : {},
   ingredients : {},
 
-  userRecettes : ["1"]
+  userRecettes : []
 
 })
 
@@ -67,6 +69,10 @@ export const mutations = {
 
   removeUserRecette(state,id){
     state.userRecettes.splice(state.userRecettes.indexOf(id),1)
+  },
+
+  changeAppState(state,newState){
+    state.appState = newState
   }
 
 }
