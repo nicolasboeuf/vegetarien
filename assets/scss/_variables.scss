@@ -1,0 +1,132 @@
+@import "~assets/scss/_browsers.scss";
+$purple: #6629cf;
+$pink: #e0d4f5;
+$grey:#5d5d5d;
+
+@font-face {
+    font-family: 'robotoblack';
+    src: url('~static/fonts/roboto-black-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotoblack_italic';
+    src: url('~static/fonts/roboto-blackitalic-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-blackitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('~static/fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotobold_italic';
+    src: url('~static/fonts/roboto-bolditalic-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotolight';
+    src: url('~static/fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotolight_italic';
+    src: url('~static/fonts/roboto-lightitalic-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotomedium';
+    src: url('~static/fonts/roboto-medium-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotomedium_italic';
+    src: url('~static/fonts/roboto-mediumitalic-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-mediumitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('~static/fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotoitalic';
+    src: url('~static/fonts/roboto-regularitalic-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-regularitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotothin';
+    src: url('~static/fonts/roboto-thin-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotothin_italic';
+    src: url('~static/fonts/roboto-thinitalic-webfont.woff2') format('woff2'),
+         url('~static/fonts/roboto-thinitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_slabbold';
+    src:url('~static/fonts/robotoslab-bold-webfont.woff2') format('woff2'),
+        url('~static/fonts/robotoslab-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_slablight';
+    src:url('~static/fonts/robotoslab-light-webfont.woff2') format('woff2'),
+        url('~static/fonts/robotoslab-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_slabregular';
+    src:url('~static/fonts/robotoslab-regular-webfont.woff2') format('woff2'),
+        url('~static/fonts/robotoslab-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_slabthin';
+    src:url('~static/fonts/robotoslab-thin-webfont.woff2') format('woff2'),
+        url('~static/fonts/robotoslab-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
