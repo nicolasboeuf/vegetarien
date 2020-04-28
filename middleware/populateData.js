@@ -21,12 +21,13 @@ export default async function ({ store }) {
 */
 
 export default async function ({ store }) {
-  let projects = await axios.get("https://spreadsheets.google.com/feeds/list/1e1P7-Ge4GQHtm4oTnja7hQsOUA2DX9RGtG4nCQHhBGA/1/public/values?alt=json")
+  let projects = await axios.get("https://spreadsheets.google.com/feeds/list/19gaUAWanATcl2jOHejnTnKGMRauVDjd-rvJiX3t3Exw/1/public/values?alt=json")
     .then(response => {
       var allProjets = []
       _.each(response.data.feed.entry, function(item, index){
           var textObj = {
-            itemId:item.gsx$itemid.$t,
+            id:item.gsx$id.$t,
+            label:item.gsx$label.$t,
           }
           allProjets.push(textObj)
       })
