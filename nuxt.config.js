@@ -79,7 +79,7 @@ export default {
       { charset: 'utf-8' },
       { hid: 'description', name: 'description', content: ""},
       { 'http-equiv': 'Content-Type', content: 'text/html', charset: 'utf-8' },
-      { name: 'author', content: 'Wedodata' },
+      { name: 'author', content: 'Nicolas Boeuf' },
       { name: 'robots', content: 'follow, index' },
       {
         property: 'og:type', 

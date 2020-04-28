@@ -1,8 +1,8 @@
 {
-  "name": "sheet-loads-temp",
+  "name": "vegetarien",
   "version": "1.0.0",
-  "description": "My tiptop Nuxt.js project",
-  "author": "Julien_P",
+  "description": "Générateur de listes de courses végétariennes",
+  "author": "Nicolas Boeuf",
   "private": true,
   "scripts": {
     "dev": "nuxt",
