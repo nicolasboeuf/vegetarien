@@ -1,7 +1,7 @@
 <template>
 
-	<div id="myComponent">
-  
+	<div id="footer">
+    
   </div>
 
 
@@ -14,7 +14,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
 
-  name: "myComponent",
+  name: "footerComponent",
 
   components: {
   },
@@ -56,16 +56,17 @@ export default {
   @import "~assets/scss/_variables.scss";
   @import "~assets/scss/_browsers.scss";
 
-  #myComponent{
-  	position: relative;
+  #footer{
+  	position: fixed;
   	width: 100%;
   	height: 75px;
-    background-color: red;
+    bottom: 0;
+    background-color: $strongGrey;
   }
   
   @media screen and (min-width: 768px){
 
-  	#myComponent{
+  	#footer{
   	
     }
 

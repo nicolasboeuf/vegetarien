@@ -12,6 +12,11 @@ export const state = () => ({
   locale: undefined, 
   locales: undefined, 
 
+  recettes : {},
+  ingredients : {},
+
+  userRecettes : ["1"]
+
 })
 
 export const getters = {
@@ -47,6 +52,22 @@ export const mutations = {
     state.locale = localeObject.code
     // this.$i18n.locale = localeObject.code
   },
+
+  populateData(state,recettes){
+    state.recettes = recettes
+  },
+
+  populateIngredients(state,ingredients){
+    state.ingredients = ingredients
+  },
+
+  addUserRecette(state,id){
+    state.userRecettes.push(id)
+  },
+
+  removeUserRecette(state,id){
+    state.userRecettes.splice(state.userRecettes.indexOf(id),1)
+  }
 
 }
 

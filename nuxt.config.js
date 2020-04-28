@@ -144,7 +144,7 @@ export default {
       'setLocales',
       'i18n',
     ],
-    //base:"/myfolder/"
+    //base:"/vegetarien/"
   },
 
   /*
