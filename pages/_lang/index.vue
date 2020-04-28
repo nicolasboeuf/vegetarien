@@ -19,12 +19,13 @@
           
           <div class="recette_ingredient_liste" v-for="rID in userRecettes">
 
-            <div class="recette_label">{{getRecetteName(rID)}}</div>
+            <div class="recette_liste_label" :class="(deletedRecette.includes(rID)?'deleted':'')" @click="deleteEntireRecette(rID)" >{{getRecetteName(rID)}}</div>
 
-            <div class="recette_ingredient" v-for="ingredient in getRecetteIngredient(rID)">
+            <div class="recette_ingredient" v-for="ingredient in getRecetteIngredient(rID)" :class="testIfDeleted(rID,ingredient)?'':'deleted'" @click="deleteIngredient(rID,ingredient)">
 
               <div class="trash_btn"></div>
-              {{ingredient}}
+              <div class="ingredient_label">{{ingredient}}</div>
+              
               
             </div>
 
@@ -80,7 +81,9 @@ export default {
   
   data() {
     return {
-      slugify:slugify
+      slugify:slugify,
+      deletedIngredient:[],
+      deletedRecette:[]
     }
   },
 
@@ -135,7 +138,70 @@ export default {
       })
 
       return tabIngredients
-    }
+    },
+
+    deleteIngredient(recette,ingredient){
+      var self = this
+      var objDeleted = {"recette":recette,"ingredient":ingredient}
+      var index = this.deletedIngredient.findIndex(x => x["recette"]===recette && x["ingredient"]===ingredient);
+      if(index===-1){
+        this.deletedIngredient.push(objDeleted)  
+      }else{
+        this.deletedIngredient.splice(index,1)
+      }
+    },
+
+    testIfDeleted(recette,ingredient){
+      var self = this
+      var test = true
+
+      _.each(this.deletedIngredient,function(obj){
+        if(obj["recette"]===recette&&obj["ingredient"]===ingredient){
+          test = false
+        }
+      })
+
+      return test
+      
+    },
+
+    deleteEntireRecette(recetteID){
+
+      var self = this
+
+      var tabIngredients = []
+
+      _.each(this.ingredients,function(i){
+        if(i.idrecette==recetteID){
+          var obj = {"recette":recetteID,"ingredient":i.label}
+          tabIngredients.push(obj)
+        }
+      })
+
+      if(this.deletedRecette.includes(recetteID)){
+
+        this.deletedRecette.splice(recetteID.indexOf(recetteID),1)
+
+        _.each(tabIngredients,function(o){
+          var index = self.deletedIngredient.findIndex(x => x["recette"]===o["recette"] && x["ingredient"]===o["ingredient"]);
+          self.deletedIngredient.splice(index,1)
+        })
+
+
+      }else{
+
+        this.deletedRecette.push(recetteID)
+
+        _.each(tabIngredients,function(o){
+          var index = self.deletedIngredient.findIndex(x => x["recette"]===o["recette"] && x["ingredient"]===o["ingredient"]);
+          if(index===-1){
+            self.deletedIngredient.push(o)
+          }
+        })
+
+
+      }
+    },
 
   },
 
@@ -232,16 +298,28 @@ export default {
       margin-top: 35px;
       padding-left: 25px;
       padding-right: 25px;
+      margin-bottom: 150px;
       .recette_ingredient_liste{
         margin-bottom: 20px;
-        .recette_label{
+        .recette_liste_label{
           font-family: "robotomedium";
           font-size: 20px;
           margin-bottom: 5px;
+          &.deleted{
+            text-decoration: line-through;
+          }
         }
         .recette_ingredient{
           font-family: "robotoregular";
           font-size: 20px;
+          &.deleted{
+            .ingredient_label{
+              text-decoration: line-through;
+            }
+          }
+          .ingredient_label{
+            display: inline-block;
+          }
           .trash_btn{
             width: 16px;
             height: 16px;
