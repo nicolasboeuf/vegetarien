@@ -26,13 +26,22 @@
               <div class="trash_btn"></div>
               <div class="ingredient_label">{{ingredient}}</div>
               
-              
             </div>
-
             
+          </div>
+        
+        <div class="recette_inputed_label" v-if="userInputedIngredient.length>0">Achats supplémentaires</div>
+        
+          <div class="inputed_ingredient" :class="testIfInputedDeleted(ingredient)?'':'deleted'" @click="deleteInputedIngredient(ingredient)" v-for="ingredient in userInputedIngredient">
+            
+            <div class="inputed_trash_btn"></div>
+            <div class="inputed_ingredient_label">{{ingredient}}</div>
+
           </div>
 
         </div>
+
+        
 
       </div>
 
@@ -83,7 +92,8 @@ export default {
     return {
       slugify:slugify,
       deletedIngredient:[],
-      deletedRecette:[]
+      deletedRecette:[],
+      deletedInputedIngredient:[]
     }
   },
 
@@ -101,6 +111,7 @@ export default {
       recettes : state => state.recettes,
       ingredients : state => state.ingredients,
       userRecettes : state => state.userRecettes,
+      userInputedIngredient : state => state.userInputedIngredient,
 
     }),
 
@@ -201,6 +212,29 @@ export default {
 
 
       }
+    },
+
+    deleteInputedIngredient(ingredient){
+
+      var self = this
+      if(this.deletedInputedIngredient.includes(ingredient)){
+        this.deletedInputedIngredient.splice(this.deletedInputedIngredient.indexOf(ingredient),1)
+      }else{
+        this.deletedInputedIngredient.push(ingredient)
+      }
+
+    },
+
+    testIfInputedDeleted(ingredient){
+      var self = this
+      var test = false
+
+      if(this.deletedInputedIngredient.includes(ingredient)){
+        test = true
+      }
+
+      return test
+      
     },
 
   },
@@ -316,6 +350,9 @@ export default {
             .ingredient_label{
               text-decoration: line-through;
             }
+            .trash_btn{
+              opacity: 0;
+            }
           }
           .ingredient_label{
             display: inline-block;
@@ -332,7 +369,37 @@ export default {
 
         }
       }
+      .recette_inputed_label{
+        font-family: "robotomedium";
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .inputed_ingredient{
+        font-family: "robotoregular";
+        font-size: 20px;
+        &.deleted{
+          .inputed_ingredient_label{
+            text-decoration: line-through;
+          }
+          .inputed_trash_btn{
+            opacity: 0;
+          }
+        }
+        .inputed_ingredient_label{
+          display: inline-block;
+        }
+        .inputed_trash_btn{
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+          background-image: url("~assets/img/trash.svg"); 
+          background-position: center center;
+          transform:translate(0,2px);
+          margin-right: 5px;
+        }
+      }
     }
+    
   }
   
   @media screen and (min-width: 768px){

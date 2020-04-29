@@ -17,7 +17,8 @@ export const state = () => ({
   recettes : {},
   ingredients : {},
 
-  userRecettes : []
+  userRecettes : [],
+  userInputedIngredient : []
 
 })
 
@@ -73,6 +74,10 @@ export const mutations = {
 
   changeAppState(state,newState){
     state.appState = newState
+  },
+
+  inputNewIngredient(state,value){
+    state.userInputedIngredient.push(value)
   }
 
 }

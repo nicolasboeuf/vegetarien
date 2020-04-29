@@ -1,9 +1,19 @@
 <template>
 
-	<div id="footer">
+	<div id="footer" :class="(appState==='liste')?'liste':''">
 
     <div id="valide_selection" :class="(userRecettes.length>0)?'active':''" v-if="appState=='selection'" @click="valideSelection()">
       <p>Valider</p>
+    </div>
+
+    <div id="edit_liste" v-if="appState==='liste'">
+      
+      <textarea id="user_input" placeholder="Ajouter un ingrédient" @change="testInput($event.target.value)"></textarea>
+      <div id="send_input_btn" @click="send_input()"><p>Ajouter</p></div>
+
+      <div class="export_btn" id="pdf_btn"><p>PDF</p></div>
+      <div class="export_btn" id="mail_btn"><p>Mail</p></div>
+
     </div>
     
   </div>
@@ -26,9 +36,11 @@ export default {
   props: [
   ],
 
-  data: () => ({
-
-  }),
+  data() {
+    return {
+      user_input:""
+    }
+  },
 
 
   computed: {
@@ -56,7 +68,19 @@ export default {
     valideSelection(){
       var self = this
       this.$store.commit("changeAppState","liste")
+    },
+
+    testInput(value){
+      var self = this
+      this.user_input = value
+    },
+
+    send_input(){
+      var self = this
+      this.$store.commit("inputNewIngredient",this.user_input)
+      
     }
+
   },
 
 
@@ -75,6 +99,9 @@ export default {
   	height: 75px;
     bottom: 0;
     background-color: $strongGrey;
+    &.liste{
+      height: 120px;
+    }
     #valide_selection{
       width: 90px;
       height: 40px;
@@ -97,6 +124,72 @@ export default {
       &.active{
         background-color: black;
         color:white;
+      }
+    }
+    #edit_liste{
+      width: 375px;
+      position: absolute;
+      left:50%;
+      @include transform(translate(-50%,0));
+      #user_input{
+        background: white;
+        width: 245px;
+        height: 35px;
+        position: absolute;
+        top:16px;
+        left:16px;
+        resize:none;
+        border-radius: 5px;
+        font-family: "robotoregular";
+        padding-left:5px;
+        padding-top: 6px;
+      }
+      #send_input_btn{
+        width: 75px;
+        height: 35px;
+        background-color: black;
+        font-family:"robotoregular";
+        font-size: 15px;
+        color:white;
+        position: absolute;
+        right:16px;
+        top:16px;
+        border-radius: 5px;
+        p{
+          display: table-cell;
+          position: absolute;
+          left:50%;
+          top:50%;
+          @include transform(translate(-50%,-50%));
+          margin-top: -2px;
+        }
+      }
+      .export_btn{
+        width: 75px;
+        height: 35px;
+        background-color: black;
+        font-family:"robotoregular";
+        font-size: 15px;
+        color:white;
+        position: absolute;
+        border-radius: 5px;
+        top:70px;
+        left:50%;
+        @include transform(translate(-50%,0));
+        p{
+          display: table-cell;
+          position: absolute;
+          left:50%;
+          top:50%;
+          @include transform(translate(-50%,-50%));
+          margin-top: -2px;
+        }
+        &#pdf_btn{
+          margin-left: -45px;
+        }
+        &#mail_btn{
+          margin-left: 45px;
+        }
       }
     }
   }
