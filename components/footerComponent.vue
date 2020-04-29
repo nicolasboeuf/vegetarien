@@ -8,13 +8,15 @@
 
     <div id="edit_liste" v-if="appState==='liste'">
       
-      <textarea id="user_input" placeholder="Ajouter un ingrédient" @change="testInput($event.target.value)"></textarea>
-      <div id="send_input_btn" @click="send_input()"><p>Ajouter</p></div>
+      <textarea id="user_input" placeholder="Ajouter un achat" @input="testInput($event.target.value)"></textarea>
+      <div id="send_input_btn" :class="(user_input!='')?'active':''" @click="send_input()"><p>Ajouter</p></div>
 
       <div class="export_btn" id="pdf_btn"><p>PDF</p></div>
       <div class="export_btn" id="mail_btn"><p>Mail</p></div>
 
     </div>
+
+    <div id="credis_btn" @click="displayCredit()">À propos</div>
     
   </div>
 
@@ -38,7 +40,7 @@ export default {
 
   data() {
     return {
-      user_input:""
+      user_input:"",
     }
   },
 
@@ -78,7 +80,14 @@ export default {
     send_input(){
       var self = this
       this.$store.commit("inputNewIngredient",this.user_input)
+      this.user_input = ''
+      document.querySelector("#user_input").value = ''
       
+    },
+
+    displayCredit(){
+      var self = this
+      this.$store.commit("changePopUpState",true)
     }
 
   },
@@ -96,16 +105,16 @@ export default {
   #footer{
   	position: fixed;
   	width: 100%;
-  	height: 75px;
+  	height: 90px;
     bottom: 0;
-    background-color: $strongGrey;
+    background-color: $white;
     &.liste{
-      height: 120px;
+      height: 140px;
     }
     #valide_selection{
       width: 90px;
       height: 40px;
-      background-color: $grey;
+      background-color: $yellow;
       color:$strongGrey;
       font-family: "robotomedium";
       border-radius: 5px;
@@ -113,17 +122,21 @@ export default {
       left:50%;
       top:50%;
       @include transform(translate(-50%,-50%));
+      margin-top: -10px;
       font-size: 20px;
+      opacity: 0.55;
       p{
         display: table-cell;
         position: absolute;
         left:50%;
         top:50%;
         @include transform(translate(-50%,-50%));
+        color:$white;
       }
       &.active{
-        background-color: black;
-        color:white;
+        background-color: $orange;
+        opacity: 1;
+        cursor: pointer;
       }
     }
     #edit_liste{
@@ -147,14 +160,21 @@ export default {
       #send_input_btn{
         width: 75px;
         height: 35px;
-        background-color: black;
+        background-color: $yellow;
         font-family:"robotoregular";
         font-size: 15px;
-        color:white;
+        color:$white;
         position: absolute;
         right:16px;
         top:16px;
         border-radius: 5px;
+        opacity: 0.55;
+        &.active{
+          background-color: $orange;
+          color:white;
+          opacity: 1;
+          cursor: pointer;
+        }
         p{
           display: table-cell;
           position: absolute;
@@ -167,7 +187,7 @@ export default {
       .export_btn{
         width: 75px;
         height: 35px;
-        background-color: black;
+        background-color: $blue;
         font-family:"robotoregular";
         font-size: 15px;
         color:white;
@@ -176,6 +196,7 @@ export default {
         top:70px;
         left:50%;
         @include transform(translate(-50%,0));
+        cursor: pointer;
         p{
           display: table-cell;
           position: absolute;
@@ -183,6 +204,7 @@ export default {
           top:50%;
           @include transform(translate(-50%,-50%));
           margin-top: -2px;
+          color:$white;
         }
         &#pdf_btn{
           margin-left: -45px;
@@ -191,6 +213,18 @@ export default {
           margin-left: 45px;
         }
       }
+    }
+    #credis_btn{
+      position: absolute;
+      color:$blue;
+      bottom: 10px;
+      font-family: "robotomedium";
+      text-align: center;
+      width: 100%;
+      display: block;
+      font-size: 12px;
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
   

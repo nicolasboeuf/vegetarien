@@ -13,6 +13,7 @@ export const state = () => ({
   locales: undefined, 
 
   appState : "selection",
+  creditPopUp : false,
 
   recettes : {},
   ingredients : {},
@@ -60,6 +61,14 @@ export const mutations = {
     state.recettes = recettes
   },
 
+  changeAppState(state,newState){
+    state.appState = newState
+  },
+
+  changePopUpState(state,newState){
+    state.creditPopUp = newState
+  },
+
   populateIngredients(state,ingredients){
     state.ingredients = ingredients
   },
@@ -70,10 +79,6 @@ export const mutations = {
 
   removeUserRecette(state,id){
     state.userRecettes.splice(state.userRecettes.indexOf(id),1)
-  },
-
-  changeAppState(state,newState){
-    state.appState = newState
   },
 
   inputNewIngredient(state,value){
