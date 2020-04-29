@@ -6,28 +6,28 @@ workbox.precaching.precacheAndRoute([
     "revision": "d09fae047b4f9875565b2fbe4fa93a57"
   },
   {
-    "url": "/vegetarien/_nuxt/5ba320eae7cd3b72b950.js",
-    "revision": "8ad7bc094b65f4bbf249a7c156124118"
+    "url": "/vegetarien/_nuxt/23e1838c3320a168b37b.js",
+    "revision": "e95963ad6d510cfd502a4e7c84677617"
   },
   {
-    "url": "/vegetarien/_nuxt/99432f157c1f39c466f4.js",
-    "revision": "7cda726a6884e797feb0bc6d25d7c2d8"
+    "url": "/vegetarien/_nuxt/277d36eaf97938e8982c.js",
+    "revision": "1e8d73005ef4f546cb7c1e87e3ca7b15"
   },
   {
-    "url": "/vegetarien/_nuxt/a45a6e0ef7a211a0d9fa.js",
-    "revision": "1b2749e8c3f6d1a87d79d91fef3433b8"
+    "url": "/vegetarien/_nuxt/32b2af894972336b7fa7.js",
+    "revision": "dfa26058bf81f6f508139efd75c15b06"
   },
   {
-    "url": "/vegetarien/_nuxt/a7f1e9bb6c7ba7e0fe82.js",
-    "revision": "4999e3e6429cd33ecc904c90e7663905"
+    "url": "/vegetarien/_nuxt/3fbbadfb60e0746faac9.js",
+    "revision": "bdcd48ed39d74b0c509e00a48b90e11c"
+  },
+  {
+    "url": "/vegetarien/_nuxt/b549c133289d5cc5c4c5.js",
+    "revision": "2050eba1e789faefbb5a047b9a85cc6e"
   },
   {
     "url": "/vegetarien/_nuxt/db81b1ecea145a774132.js",
     "revision": "d6a748ad62d99b6f1d334e9cd05b390b"
-  },
-  {
-    "url": "/vegetarien/_nuxt/df75f30ac46848718071.js",
-    "revision": "73b4e03901fa03ff5875979bb28af16c"
   }
 ], {
   "cacheId": "vegetarien",

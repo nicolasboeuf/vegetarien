@@ -29,6 +29,8 @@
             </div>
         </div>
 
+        <div id="back_selection" @click="backToSelection()" v-if="appState=='liste'">Retour aux recettes</div>
+
         <div id="ingredients_container" v-if="appState=='liste'">
           
           <div class="recette_ingredient_liste" v-for="rID in userRecettes">
@@ -255,7 +257,12 @@ export default {
     hideCredit(){
       var self = this
       this.$store.commit("changePopUpState",false)
-    }
+    },
+
+    backToSelection(){
+      var self = this
+      this.$store.commit("changeAppState","selection")
+    },
 
   },
 
@@ -351,12 +358,36 @@ export default {
         }
       }
     }
+    #back_selection{
+      position: relative;
+      display: block;
+      width: 330px;
+      left:50%;
+      @include transform(translate(-50%,0));
+      margin-left: 0px;
+      margin-top: 20px;
+      font-size: 15px;
+      font-family: "robotomedium";
+      color:$blue;
+      padding-left: 25px;
+      cursor: pointer;
+      &:after{
+        content: "";
+        width: 20px;
+        height: 20px;
+        background-image: url("~assets/img/back.svg"); 
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: absolute;
+        left:0;
+      }
+    }
     #ingredients_container{
-      margin-top: 35px;
+      margin-top: 20px;
       padding-left: 25px;
       padding-right: 25px;
-      margin-bottom: 150px;
-      width: 375px;
+      margin-bottom: 250px;
+      width: 330px;
       left:50%;
       position: relative;
       @include transform(translate(-50%,0));
