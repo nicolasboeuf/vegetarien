@@ -19,7 +19,11 @@ export const state = () => ({
   ingredients : {},
 
   userRecettes : [],
-  userInputedIngredient : []
+
+  userInputedIngredient : [],
+  deletedIngredient : [],
+  deletedRecette : [],
+  deletedInputedIngredient : []
 
 })
 
@@ -83,6 +87,22 @@ export const mutations = {
 
   inputNewIngredient(state,value){
     state.userInputedIngredient.push(value)
+  },
+
+  addDeletedIngredient(state,object){
+    state.deletedIngredient.push(object)  
+  },
+
+  removeDeletedIngredient(state,index){
+    state.deletedIngredient.splice(index,1)
+  },
+
+  addDeletedInputedIngredient(state,label){
+    state.deletedInputedIngredient.push(label)  
+  },
+
+  removeDeletedInputedIngredient(state,index){
+    state.deletedInputedIngredient.splice(index,1)
   }
 
 }

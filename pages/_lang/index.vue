@@ -107,9 +107,6 @@ export default {
   data() {
     return {
       slugify:slugify,
-      deletedIngredient:[],
-      deletedRecette:[],
-      deletedInputedIngredient:[]
     }
   },
 
@@ -128,7 +125,11 @@ export default {
       recettes : state => state.recettes,
       ingredients : state => state.ingredients,
       userRecettes : state => state.userRecettes,
+
       userInputedIngredient : state => state.userInputedIngredient,
+      deletedIngredient: state => state.deletedIngredient,
+      deletedRecette: state => state.deletedRecette,
+      deletedInputedIngredient: state => state.deletedInputedIngredient,
 
     }),
 
@@ -171,11 +172,13 @@ export default {
     deleteIngredient(recette,ingredient){
       var self = this
       var objDeleted = {"recette":recette,"ingredient":ingredient}
+
       var index = this.deletedIngredient.findIndex(x => x["recette"]===recette && x["ingredient"]===ingredient);
+      
       if(index===-1){
-        this.deletedIngredient.push(objDeleted)  
+        this.$store.commit("addDeletedIngredient",objDeleted)
       }else{
-        this.deletedIngredient.splice(index,1)
+        this.$store.commit("removeDeletedIngredient",index)
       }
     },
 
@@ -195,7 +198,7 @@ export default {
 
     deleteEntireRecette(recetteID){
 
-      var self = this
+      /* var self = this
 
       var tabIngredients = []
 
@@ -228,16 +231,16 @@ export default {
         })
 
 
-      }
+      } */
     },
 
     deleteInputedIngredient(ingredient){
 
       var self = this
       if(this.deletedInputedIngredient.includes(ingredient)){
-        this.deletedInputedIngredient.splice(this.deletedInputedIngredient.indexOf(ingredient),1)
+        this.$store.commit("removeDeletedInputedIngredient",this.deletedInputedIngredient.indexOf(ingredient))
       }else{
-        this.deletedInputedIngredient.push(ingredient)
+        this.$store.commit("addDeletedInputedIngredient",ingredient)
       }
 
     },

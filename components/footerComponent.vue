@@ -77,6 +77,10 @@ export default {
 
       userRecettes : state => state.userRecettes,
       userInputedIngredient : state => state.userInputedIngredient,
+
+      deletedIngredient: state => state.deletedIngredient,
+      deletedInputedIngredient: state => state.deletedInputedIngredient,
+
     }),
 
     ...mapGetters({
@@ -147,27 +151,75 @@ export default {
 
       var tabIngredient = []
 
-      console.log(this.ingredients)
+      var firstPage = true
 
       _.each(this.userRecettes,function(r){
+
         var recette = _.find(self.recettes,function(o){return o["id"]===r})
         tabIngredient.push("* "+_.truncate(recette["label"],{"length":45,"omission":''})+" *")
         tabIngredient.push("")
 
         _.each(self.ingredients,function(i){
+
           if(i["idrecette"]===r){
-            tabIngredient.push("   "+i["label"])
+            var index = self.deletedIngredient.findIndex(x => x["recette"]===r && x["ingredient"]===i["label"]);
+            if(index===-1){
+              tabIngredient.push("   "+i["label"])
+            }
           }
+
+          if(tabIngredient.length > 25){
+            if(firstPage){
+              firstPage = false
+            }else{
+              doc.addPage()  
+            }
+            
+            doc.text(tabIngredient, 10, 10);
+            tabIngredient = []
+          }
+
         })
 
         tabIngredient.push("")
 
       })
 
-      console.log(tabIngredient.length)
-      console.log(tabIngredient.length/40)
+      if(this.userInputedIngredient.length>0){
 
-      doc.text(tabIngredient, 10, 10);
+        tabIngredient.push("* Achats supplémentaires *")
+        tabIngredient.push("")
+
+        _.each(this.userInputedIngredient,function(i){
+
+          if(self.deletedInputedIngredient.includes(i)){
+
+          }else{
+            tabIngredient.push("   "+i)
+          }
+
+          if(tabIngredient.length > 25){
+            if(firstPage){
+              firstPage = false
+            }else{
+              doc.addPage()  
+            }
+            
+            doc.text(tabIngredient, 10, 10);
+            tabIngredient = []
+          }
+
+        })
+
+      }
+
+      if(firstPage){
+        doc.text(tabIngredient, 10, 10);  
+      }else{
+        doc.addPage()
+        doc.text(tabIngredient, 10, 10);  
+      }
+      
       doc.save(pdfName + '.pdf');
 
     },
