@@ -9,6 +9,8 @@ export default async function ({ store }) {
           var textObj = {
             id:item.gsx$id.$t,
             label:item.gsx$label.$t,
+            type:item.gsx$type.$t,
+            vegan:item.gsx$vegan.$t,
           }
           allRecettes.push(textObj)
       })

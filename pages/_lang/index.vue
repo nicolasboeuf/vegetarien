@@ -18,15 +18,67 @@
         </div>
       </div>
 
-      <div id="content">
+      <div id="content" v-if="creditPopUp==false">
 
         <h1 v-if="appState=='selection'"> {{$t('app.title')}} </h1>
 
         <div id="recettes_container" v-if="appState=='selection'">
-          <div class="recette_box" v-for="r in recettes" :class="(userRecettes.includes(r['id']))?'selected':''"  @click="addRecette(r['id'])">
-            <div class="recette_tickbox"></div>
-            <div class="recette_label">{{r.label}}</div>
+
+          <div class="vegan_selector_box" :class="(veganOnly)?'vegan_only':''">
+            
+            <div class="vegan_label" data-label="all" @click="veganOnly=false">Toutes les recettes<br>végétariennes</div>
+            <div class="vegan_tickbox" @click="toggleVegan()"></div>
+            <div class="vegan_label" data-label="vegan"  @click="veganOnly=true">Recettes <span>végétaliennes</span><br> seulement</div>
+            
+
+          </div>
+
+          <div class="recettes_types_container" data-type="entree">
+            
+            <div class="recettes_types_label">Entrées</div>
+
+            <div class="recette_box" v-if="r['type']==='entrée'&&veganOnly===false||r['type']==='entrée'&&veganOnly===true&&r['vegan']==='1'" v-for="r in recettes" :class="(userRecettes.includes(r['id']))?'selected':''"  @click="addRecette(r['id'])">
+              <div class="recette_tickbox"></div>
+              <div class="recette_label">{{r.label}}</div>
             </div>
+
+          </div>
+
+          <div class="recettes_types_container" data-type="plats">
+            
+            <div class="recettes_types_label">Plats</div>
+
+            <div class="recette_box" v-if="r['type']==='plat'&&veganOnly===false||r['type']==='plat'&&veganOnly===true&&r['vegan']==='1'" v-for="r in recettes" :class="(userRecettes.includes(r['id']))?'selected':''"  @click="addRecette(r['id'])">
+              <div class="recette_tickbox"></div>
+              <div class="recette_label">{{r.label}}</div>
+            </div>
+
+          </div>
+
+          <div class="recettes_types_container" data-type="desserts">
+            
+            <div class="recettes_types_label">Desserts</div>
+
+            <div class="recette_box" v-if="r['type']==='dessert'&&veganOnly===false||r['type']==='dessert'&&veganOnly===true&&r['vegan']==='1'" v-for="r in recettes" :class="(userRecettes.includes(r['id']))?'selected':''"  @click="addRecette(r['id'])">
+              <div class="recette_tickbox"></div>
+              <div class="recette_label">{{r.label}}</div>
+            </div>
+
+          </div>
+
+          <div class="recettes_types_container" data-type="autres">
+            
+            <div class="recettes_types_label">Autres</div>
+
+            <div class="recette_box" v-if="r['type']==='autre'&&veganOnly===false||r['type']==='autre'&&veganOnly===true&&r['vegan']==='1'" v-for="r in recettes" :class="(userRecettes.includes(r['id']))?'selected':''"  @click="addRecette(r['id'])">
+              <div class="recette_tickbox"></div>
+              <div class="recette_label">{{r.label}}</div>
+            </div>
+
+          </div>
+
+
+
         </div>
 
         <div id="back_selection" @click="backToSelection()" v-if="appState=='liste'">Retour aux recettes</div>
@@ -107,6 +159,7 @@ export default {
   data() {
     return {
       slugify:slugify,
+      veganOnly:false
     }
   },
 
@@ -267,6 +320,15 @@ export default {
       this.$store.commit("changeAppState","selection")
     },
 
+    toggleVegan(){
+      var self = this
+      if(this.veganOnly===true){
+        this.veganOnly=false;
+      }else{
+        this.veganOnly=true;
+      }
+    }
+
   },
 
 }
@@ -283,6 +345,12 @@ export default {
     height: auto;
     min-height: 100%;
     #content{
+      position: absolute;
+      top:0;
+      bottom: 90px;
+      left:50%;
+      @include transform(translate(-50%,0));
+      max-width: 350px;
       h1{
         color:$blue;
         font-family: "robotomedium";
@@ -292,12 +360,91 @@ export default {
         margin-top: 30px;
         margin-bottom: 30px;
       }
+      .vegan_selector_box{
+        position: relative;
+        height: 45px;
+        margin-bottom: 20px;
+        border:1px solid $blue;
+        .vegan_tickbox{
+          display: inline-block;
+          width: 35px;
+          height: 20px;
+          border:1px solid $blue;
+          background-color: $blue;
+          box-sizing:border-box;
+          border-radius: 15px;
+          position:absolute;
+          top:50%;
+          left:50%;
+          @include transform(translate(-50%,-50%));
+          &:after{
+            content: "";
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            background-color: white;
+            top:1px;
+            left:1px;
+            right:auto;
+            transition:all 0.4s ease-in-out;
+          }
+        }
+        .vegan_label{
+          display: inline-block;
+          color:$blue;
+          font-family: "robotomedium";
+          font-size: 12px;
+          margin-bottom: 12px;
+          margin-left: 0px;
+          text-align: center;
+          position: absolute;
+          width: 200px;
+          left:50%;
+          @include transform(translate(-50%,5px));
+          &[data-label="all"]{
+            margin-left: -130px;
+            text-align: right;
+          }
+          &[data-label="vegan"]{
+            text-align: left;
+            margin-left: 130px;  
+            opacity: 0.6;
+          }
+          span{
+            text-decoration: underline;
+          }
+        }
+        &.vegan_only{
+          .vegan_tickbox{
+            &:after{
+              left:auto;
+              right:1px;
+            }
+          }
+          .vegan_label{
+            &[data-label="all"]{
+              opacity: 0.6;
+            }
+            &[data-label="vegan"]{
+              opacity: 1; 
+            }
+          }
+        }
+      }
       #recettes_container{
         display: block;
         height: auto;
         padding-bottom: 75px;
         margin-bottom: 100px;
         cursor: pointer;
+        .recettes_types_label{
+          color:$orange;
+          font-family: "robotomedium";
+          font-size: 20px;
+          margin-bottom: 12px;
+        }
         .recette_box{
           width:349px;
           background-color: $white;

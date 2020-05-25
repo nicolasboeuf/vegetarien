@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Générateur de listes de courses végétariennes",
   "author": "Nicolas Boeuf",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

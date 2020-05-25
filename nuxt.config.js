@@ -77,8 +77,9 @@ export default {
     titleTemplate: "",
     meta: [
       { charset: 'utf-8' },
-      { hid: 'description', name: 'description', content: ""},
+      { hid: 'description', name: 'description', content: "Générateur de listes de courses végétariennes"},
       { 'http-equiv': 'Content-Type', content: 'text/html', charset: 'utf-8' },
+      { name: 'viewport', content:'=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
       { name: 'author', content: 'Nicolas Boeuf' },
       { name: 'robots', content: 'follow, index' },
       {
@@ -87,19 +88,19 @@ export default {
       },
       {
         property: 'og:url',
-        content: ''
+        content: 'http://nicolasboeuf.fr/vegetarien'
       },
       {
         property: 'og:title',
-        content: ''
+        content: 'Générateur de listes de courses végétariennes'
       },
       {
         property: 'og:image',
-        content: ''
+        content: 'http://nicolasboeuf.fr/vegetarien/share.png'
       },
       {
         property: 'og:description',
-        content: ''
+        content: 'Générez votre liste de courses pour des recettes végétariennes et végétaliennes'
       },
       {
         property: 'og:app_id',
@@ -111,7 +112,7 @@ export default {
       },
       {
         property: 'twitter:image',
-        content: ''
+        content: 'http://nicolasboeuf.fr/vegetarien/share.png'
       }
     ],
     link: [

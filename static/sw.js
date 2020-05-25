@@ -2,32 +2,32 @@ importScripts('/vegetarien/_nuxt/workbox.4c4f5ca6.js')
 
 workbox.precaching.precacheAndRoute([
   {
-    "url": "/vegetarien/_nuxt/48a0f37ee6967ca25dda.js",
-    "revision": "08a61d35e8413c9d432d2c12d5db1f3e"
+    "url": "/vegetarien/_nuxt/06e914532f79fbc0dd7a.js",
+    "revision": "f6772f955e9d088036b328530fdba05a"
   },
   {
-    "url": "/vegetarien/_nuxt/4c4bcbd4d82b8959c84e.js",
-    "revision": "f6bf81f085052ec3f6e2ae3a8a0d183d"
+    "url": "/vegetarien/_nuxt/5162f56a0e258cd604b1.js",
+    "revision": "09394c2605ff810eece94c81390cd7fc"
   },
   {
     "url": "/vegetarien/_nuxt/87263f972888c526709f.js",
     "revision": "b07f8f09206d3e317f1505f7973435e6"
   },
   {
-    "url": "/vegetarien/_nuxt/95b4f80da40a9ad12890.js",
-    "revision": "ab4880002f716b471ae412dd68b9c7b8"
-  },
-  {
     "url": "/vegetarien/_nuxt/984f4ab471ef6ceba1db.js",
     "revision": "a1ac391dbc4d06f709cedb355e86e81c"
   },
   {
-    "url": "/vegetarien/_nuxt/9af816ca8d50c67dda19.js",
-    "revision": "58331854d0c88d5216531179499ea433"
+    "url": "/vegetarien/_nuxt/9f919c3953fa0d2ea81b.js",
+    "revision": "d5df740023b8091e8542eb3398d807a1"
   },
   {
-    "url": "/vegetarien/_nuxt/9b123d23a0f33b7c59ea.js",
-    "revision": "b2c78bfdf9c0db850dbc04ae97f81b2d"
+    "url": "/vegetarien/_nuxt/ea462f8ffd4ee8674a3f.js",
+    "revision": "c1c09978c50c30ec1ad0e2e36b4846a2"
+  },
+  {
+    "url": "/vegetarien/_nuxt/fd5b1aae6b3d1f7d6daf.js",
+    "revision": "f1041262beb15b2d4dbe4a3b9f083134"
   }
 ], {
   "cacheId": "vegetarien",
